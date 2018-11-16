@@ -288,3 +288,15 @@ and then it will be possible to attach a debugger from IDE to it.
 # Questions?
 
 Jump on irc.freenode.net and the #jenkins room. Ask!
+
+# Migrateion data
+
+
+Copy archive:
+
+    docker cp var_lib_jenkins.tgz <CONTAINER>:/var/jenkins_home/backup.tgz
+
+Or uncompressed files:
+
+    cat var_lib_jenkins.tgz | docker exec -i <CONTAINER> tar Cxzf /var/jenkins_home/ -
+
