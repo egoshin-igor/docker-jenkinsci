@@ -289,8 +289,7 @@ and then it will be possible to attach a debugger from IDE to it.
 
 Jump on irc.freenode.net and the #jenkins room. Ask!
 
-# Migrateion data
-
+# Migration data
 
 Copy archive:
 
