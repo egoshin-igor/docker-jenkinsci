@@ -1,11 +1,11 @@
-FROM openjdk:8-jdk
+FROM openjdk:8-jdk-stretch
 
 # RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
 #     echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list && \
 #     apt update && \
 #     apt install -y xvfb google-chrome-stable chromedriver && \
 #     rm -rf /var/lib/apt/lists/*
-RUN apt update && apt install -y git nano curl ansible python3 python3-venv python3-pip && rm -rf /var/lib/apt/lists/*
+RUN apt update && apt upgrade -y && apt install -y git nano curl ansible python3 python3-venv python3-pip && rm -rf /var/lib/apt/lists/*
 
 ARG user=jenkins
 ARG group=jenkins
@@ -44,8 +44,6 @@ RUN curl -fsSL https://github.com/krallin/tini/releases/download/${TINI_VERSION}
   && gpg --verify /sbin/tini.asc \
   && rm -rf /sbin/tini.asc /root/.gnupg \
   && chmod +x /sbin/tini
-
-COPY init.groovy /usr/share/jenkins/ref/init.groovy.d/tcp-slave-agent-port.groovy
 
 # jenkins version being bundled in this docker image
 ARG JENKINS_VERSION
